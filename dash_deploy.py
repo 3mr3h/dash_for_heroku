@@ -12,11 +12,11 @@
 import base64
 import io
 import plotly.graph_objs as go
-#import cufflinks as cf
+import cufflinks as cf
 
 # Dash imports
-import dash_deploy
-from dash_deploy import Dash, dash_table, html, dcc
+import dash
+from dash import Dash, dash_table, html, dcc
 from dash.dependencies import Input, Output, State
 # Dataframe imports
 import pandas as pd
@@ -27,7 +27,7 @@ df = pd.read_excel(file)
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 
 # app is an Dash instance for HTML layout and app callbacks.
-app = dash_deploy.Dash(__name__, external_stylesheets=external_stylesheets)
+app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 server = app.server
 app = Dash(__name__)
 
