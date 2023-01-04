@@ -46,7 +46,7 @@ colors = {
 app.layout = html.Div(children=[
     dcc.Upload(
         id='upload-data',
-        children=html.Div(['Drag and Drop or', html.A('Select File'), 'use ']),
+        children=html.Div(['Drag and Drop, ', html.A('Select File'), ' to test download and use ', html.A('test file', href="https://github.com/3mr3h/dash_for_heroku/blob/cd3e25ddb08ae436667cee9d442ce111e3397e76/lstm_preds.csv")]),
         style={ 
             'width': '60%',
             'height': '60px',
