@@ -20,9 +20,9 @@ from dash import Dash, dash_table, html, dcc
 from dash.dependencies import Input, Output, State
 # Dataframe imports
 import pandas as pd
-#file = 'ARIMA_preds.xls' #predictions for the first arima
+file = 'ARIMA_preds.xls' #predictions for the first arima
 #file = input("input the file: ") #input for the file testing
-file = 'AutoARIMA_preds.xls'
+#file = 'AutoARIMA_preds.xls' # resulting figure is more like a straight line. we chose to use the first ARIMA model for the base model.
 df = pd.read_excel(file)
 
 # External CSS for styling
