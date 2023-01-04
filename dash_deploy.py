@@ -46,7 +46,7 @@ colors = {
 app.layout = html.Div(children=[
     dcc.Upload(
         id='upload-data',
-        children=html.Div(['Drag and drop, ', html.A('select'), ' To test download and use', html.A('test file', href="#file", target="_blank")]),
+        children=html.Div(['Drag and drop, ', html.A(html.B('select')), ' To test download and use', html.A(' test file', href="#file", target="_blank")]),
         style={ 
             'width': '60%',
             'height': '60px',
@@ -113,7 +113,7 @@ app.layout = html.Div(children=[
         editable=True
     )),
 ])
-app.css.append_css({'external_url':'https://codepen.io/chriddyp/pen/bWLwgP.css'})
+#app.css.append_css({'external_url':'https://codepen.io/chriddyp/pen/bWLwgP.css'})
 
 # Method: parse_data()
 # Gets XLS, CSV, TXT files from the user
