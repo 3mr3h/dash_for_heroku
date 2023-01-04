@@ -46,7 +46,7 @@ colors = {
 app.layout = html.Div(children=[
     dcc.Upload(
         id='upload-data',
-        children=html.Div(['Drag and Drop, ', html.A('Select File'), ' to test download and use ', html.A('test file', href="https://github.com/3mr3h/dash_for_heroku/blob/cd3e25ddb08ae436667cee9d442ce111e3397e76/lstm_preds.csv")]),
+        children=html.Div(['Drag and Drop, ', html.A('Select File'), html.Br(), ' To test download and use ', html.A('test file', href="https://github.com/3mr3h/dash_for_heroku/blob/cd3e25ddb08ae436667cee9d442ce111e3397e76/lstm_preds.csv", target="_blank")]),
         style={ 
             'width': '60%',
             'height': '60px',
@@ -104,7 +104,8 @@ app.layout = html.Div(children=[
             {'name': 'Normalized Capital', 'id': 'ncapital'},
             {'name': 'Capital Gain/Loss', 'id': 'gainloss'},
             {'name': 'Potential USD Return', 'id': 'usdret'},
-            {'name': 'Capital Gain/Loss Margin', 'id': 'GLmargin'}
+            {'name': 'Capital Gain/Loss Margin', 'id': 'GLmargin'},
+            {'name': 'Confidence Level', 'id': 'conf'}
         ],
         data=[{'capital': (i+1)*10000} for i in range(6)],
         editable=True
@@ -191,11 +192,14 @@ def update_columns(timestamp, rows):
             #row['GLmargin'] = int(((float(row['capital']) * (kkm/4+1)) - (float(row['capital']) * (interest+1))) * usd_volatility *0.05)
             row['usdret'] = int(float(row['capital'])*expected_change)
             row['GLmargin'] = int(float(row['capital'])*usd_volatility*expected_change)
+            row['conf'] = '95%: 14.8 - 21.5, 99%: 13.1 - 23.1'
         except:
             row['kkm'] = 'NA'
             row['ncapital'] = 'NA'
             row['gainloss'] = 'NA'
+            row['usdret'] = 'NA'
             row['GLmargin'] = 'NA'
+            row['conf'] = 'NA'
     return rows
 
 # main starts here :)
