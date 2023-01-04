@@ -46,7 +46,7 @@ colors = {
 app.layout = html.Div(children=[
     dcc.Upload(
         id='upload-data',
-        children=html.Div(['Drag and drop, ', html.A(html.B('select a file.')), ' To test, download and use the test file (download from Deep Learning Model section')]),
+        children=html.Div(['Drag and drop, ', html.A(html.B('select a file.')), ' To test, download and use the test file (download from Deep Learning Model section']),
         style={ 
             'width': '60%',
             'height': '60px',
