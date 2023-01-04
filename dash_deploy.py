@@ -20,7 +20,8 @@ from dash import Dash, dash_table, html, dcc
 from dash.dependencies import Input, Output, State
 # Dataframe imports
 import pandas as pd
-file = input("input the file: ")
+file = 'final_buysell_preds.xls' #predictions for arima
+#file = input("input the file: ")
 df = pd.read_excel(file)
 
 # External CSS for styling
@@ -45,7 +46,7 @@ colors = {
 app.layout = html.Div(children=[
     dcc.Upload(
         id='upload-data',
-        children=html.Div(['Drag and Drop or ', html.A('Select Files')]),
+        children=html.Div(['Drag and Drop or', html.A('Select File'), 'use ']),
         style={ 
             'width': '60%',
             'height': '60px',
