@@ -46,7 +46,7 @@ colors = {
 app.layout = html.Div(children=[
     dcc.Upload(
         id='upload-data',
-        children=html.Div(['Drag and drop, ', html.A(html.B('select')), ' To test download and use', html.A(' test file', href="#file", target="_blank")]),
+        children=html.Div(['Drag and drop, ', html.A(html.B('select a file.')), ' To test, download and use the test', html.A(' file', href="https://github.com/3mr3h/dash_for_heroku/blob/cd3e25ddb08ae436667cee9d442ce111e3397e76/lstm_preds.csv", target="_blank")]),
         style={ 
             'width': '60%',
             'height': '60px',
@@ -92,8 +92,10 @@ app.layout = html.Div(children=[
         
         html.Div([
             html.H5('DEEP LEARNING MODEL PREDICTIONS (LSTM)'),
-            html.P(id='file'),
-            html.A('test file link', href="https://github.com/3mr3h/dash_for_heroku/blob/cd3e25ddb08ae436667cee9d442ce111e3397e76/lstm_preds.csv", target="_blank"),
+            html.P('The test file can be downloaded from the following link. Test file is the Deep Learning predictions for LSTM model.'),
+            html.A('Test file', href="https://github.com/3mr3h/dash_for_heroku/blob/cd3e25ddb08ae436667cee9d442ce111e3397e76/lstm_preds.csv", target="_blank"),
+            html.P('Note:You can clone the githup repository and test the dashboard locally.'),
+            html.A('Github', href='https://github.com/3mr3h/dash_for_heroku', target='blank'),
             dcc.Graph(id='Mygraph')
         ], className="six columns")
         ], className="row"),
