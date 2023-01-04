@@ -46,7 +46,7 @@ colors = {
 app.layout = html.Div(children=[
     dcc.Upload(
         id='upload-data',
-        children=html.Div(['Drag and drop, ', html.A(html.B('select a file.')), ' To test, download and use the test', html.A(' file', href="https://github.com/3mr3h/dash_for_heroku/blob/cd3e25ddb08ae436667cee9d442ce111e3397e76/lstm_preds.csv", target="_blank")]),
+        children=html.Div(['Drag and drop, ', html.A(html.B('select a file.')), ' To test, download and use the test file (download from Deep Learning Model section')]),
         style={ 
             'width': '60%',
             'height': '60px',
