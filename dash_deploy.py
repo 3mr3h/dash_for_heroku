@@ -46,7 +46,7 @@ colors = {
 app.layout = html.Div(children=[
     dcc.Upload(
         id='upload-data',
-        children=html.Div(['Drag and Drop, ', html.A('Select File'), html.Br(), ' To test download and use ', html.A('test file', href="https://github.com/3mr3h/dash_for_heroku/blob/cd3e25ddb08ae436667cee9d442ce111e3397e76/lstm_preds.csv", target="_blank")]),
+        children=html.Div(['Drag and drop, ', html.A('select'), ' To test download and use', html.A('test file', href="#file", target="_blank")]),
         style={ 
             'width': '60%',
             'height': '60px',
@@ -91,7 +91,9 @@ app.layout = html.Div(children=[
         ], className="six columns"),
         
         html.Div([
-            html.H5('DEEP LEARNING MODEL PREDICTIONS (LSTM, DeepAR)'),
+            html.H5('DEEP LEARNING MODEL PREDICTIONS (LSTM)'),
+            html.P(id='file'),
+            html.A('test file link', href="https://github.com/3mr3h/dash_for_heroku/blob/cd3e25ddb08ae436667cee9d442ce111e3397e76/lstm_preds.csv", target="_blank"),
             dcc.Graph(id='Mygraph')
         ], className="six columns")
         ], className="row"),
@@ -192,7 +194,7 @@ def update_columns(timestamp, rows):
             #row['GLmargin'] = int(((float(row['capital']) * (kkm/4+1)) - (float(row['capital']) * (interest+1))) * usd_volatility *0.05)
             row['usdret'] = int(float(row['capital'])*expected_change)
             row['GLmargin'] = int(float(row['capital'])*usd_volatility*expected_change)
-            row['conf'] = '95%: 14.8 - 21.5, 99%: 13.1 - 23.1'
+            row['conf'] = '95%: 14.8-21.5'
         except:
             row['kkm'] = 'NA'
             row['ncapital'] = 'NA'
