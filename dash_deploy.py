@@ -20,8 +20,9 @@ from dash import Dash, dash_table, html, dcc
 from dash.dependencies import Input, Output, State
 # Dataframe imports
 import pandas as pd
-file = 'final_buysell_preds.xls' #predictions for arima
-#file = input("input the file: ")
+#file = 'ARIMA_preds.xls' #predictions for the first arima
+#file = input("input the file: ") #input for the file testing
+file = 'AutoARIMA_preds.xls'
 df = pd.read_excel(file)
 
 # External CSS for styling
