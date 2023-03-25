@@ -20,7 +20,9 @@ from dash import Dash, dash_table, html, dcc
 from dash.dependencies import Input, Output, State
 # Dataframe imports
 import pandas as pd
-file = input("input the file: ")
+file = 'ARIMA_preds.xls' #predictions for the first arima
+#file = input("input the file: ") #input for the file testing
+#file = 'AutoARIMA_preds.xls' # resulting figure is more like a straight line. we chose to use the first ARIMA model for the base model.
 df = pd.read_excel(file)
 
 # External CSS for styling
@@ -44,7 +46,7 @@ colors = {
 app.layout = html.Div(children=[
     dcc.Upload(
         id='upload-data',
-        children=html.Div(['Drag and Drop or ', html.A('Select Files')]),
+        children=html.Div(['Drag and drop, ', html.A(html.B('select a file.')), ' To test, download and use the test file (download from Deep Learning Model section)']),
         style={ 
             'width': '60%',
             'height': '60px',
@@ -89,7 +91,11 @@ app.layout = html.Div(children=[
         ], className="six columns"),
         
         html.Div([
-            html.H5('DEEP LEARNING MODEL PREDICTIONS (LSTM, DeepAR)'),
+            html.H5('DEEP LEARNING MODEL PREDICTIONS (LSTM)'),
+            html.P('The test file can be downloaded from the following link. Test file is the Deep Learning predictions for LSTM model.'),
+            html.A('Test file', href="https://github.com/3mr3h/dash_for_heroku/blob/cd3e25ddb08ae436667cee9d442ce111e3397e76/lstm_preds.csv", target="_blank"),
+            html.P('Note:You can clone the githup repository and test the dashboard locally.'),
+            html.A('Github', href='https://github.com/3mr3h/dash_for_heroku', target='blank'),
             dcc.Graph(id='Mygraph')
         ], className="six columns")
         ], className="row"),
@@ -102,13 +108,14 @@ app.layout = html.Div(children=[
             {'name': 'Normalized Capital', 'id': 'ncapital'},
             {'name': 'Capital Gain/Loss', 'id': 'gainloss'},
             {'name': 'Potential USD Return', 'id': 'usdret'},
-            {'name': 'Capital Gain/Loss Margin', 'id': 'GLmargin'}
+            {'name': 'Capital Gain/Loss Margin', 'id': 'GLmargin'},
+            {'name': 'Confidence Level', 'id': 'conf'}
         ],
         data=[{'capital': (i+1)*10000} for i in range(6)],
         editable=True
     )),
 ])
-app.css.append_css({'external_url':'https://codepen.io/chriddyp/pen/bWLwgP.css'})
+#app.css.append_css({'external_url':'https://codepen.io/chriddyp/pen/bWLwgP.css'})
 
 # Method: parse_data()
 # Gets XLS, CSV, TXT files from the user
@@ -189,13 +196,16 @@ def update_columns(timestamp, rows):
             #row['GLmargin'] = int(((float(row['capital']) * (kkm/4+1)) - (float(row['capital']) * (interest+1))) * usd_volatility *0.05)
             row['usdret'] = int(float(row['capital'])*expected_change)
             row['GLmargin'] = int(float(row['capital'])*usd_volatility*expected_change)
+            row['conf'] = '95%: 14.8-21.5'
         except:
             row['kkm'] = 'NA'
             row['ncapital'] = 'NA'
             row['gainloss'] = 'NA'
+            row['usdret'] = 'NA'
             row['GLmargin'] = 'NA'
+            row['conf'] = 'NA'
     return rows
 
 # main starts here :)
 if __name__ == '__main__':
-    app.run_server(debug=False)
+    app.run_server(host='0.0.0.0', port='80', debug=False)
