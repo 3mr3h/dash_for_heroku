@@ -37,7 +37,6 @@ colors = {
     "background": "#f8f8f8",
     "text": "#505050"
 }
-
 # HTML layout
 # A file upload is at the top
 # a graph is in the middle
